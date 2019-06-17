@@ -1,3 +1,5 @@
+let serviceHost = "98.181.188.165";
+
 let makeRequest = async (options) => {
     let fetchOptions = {
         method: options.method,
@@ -10,7 +12,7 @@ let makeRequest = async (options) => {
         body: options.hasOwnProperty("body") ? options.body : null,
     };
 
-    let response = await fetch("http://localhost:3000/" + options.endpoint, fetchOptions);
+    let response = await fetch(`${serviceHost}:3000/` + options.endpoint, fetchOptions);
     return response;
 };
 
