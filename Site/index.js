@@ -1,8 +1,8 @@
 function CreateSiteContainer() {
 	//  Create the base container that the program will exist in
 	container = document.createElement("div");
-    container.style.width = "320px";
-    container.style.height = "560px";
+    container.style.width = "100%";
+    container.style.height = "100%";
     container.style.minHeight = "560px";
     container.style.backgroundColor = "black";
     container.style.color = "white";
