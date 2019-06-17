@@ -12,7 +12,7 @@ let makeRequest = async (options) => {
         body: options.hasOwnProperty("body") ? options.body : null,
     };
 
-    let response = await fetch(`${serviceHost}:3000/` + options.endpoint, fetchOptions);
+    let response = await fetch(`http://${serviceHost}:3000/` + options.endpoint, fetchOptions);
     return response;
 };
 
