@@ -12,8 +12,8 @@ class CardButtonSet {
     
         let container = document.createElement("div");
         container.style.display = "flex";
-        container.style.width = "280px";
-        container.style.height = "140px";
+        container.style.width = "140px";
+        container.style.height = "70px";
         container.style.margin = "20px auto 0px auto";
 
         let faceButton = new SymbolButton({ buttonType: "Face", value: "Ace" });

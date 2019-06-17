@@ -17,18 +17,19 @@ class SymbolButton {
         this.value = this.options.value;
 
         let container = document.createElement("div");
-        container.style.width = "140px";
-        container.style.height = "140px";
+        container.style.width = "70px";
+        container.style.height = "70px";
         container.style.border = "1px solid white";
         container.style.borderRadius = "8px";
 
         let icon = document.createElement("div");
-        icon.style.width = "100%";
-        icon.style.height = "100%";
+        icon.style.width = "70px";
+        icon.style.height = "70px";
         icon.style.border = "1px solid white";
         icon.style.borderRadius = "8px";
         icon.style.margin = "auto";
         icon.style.backgroundImage = `url(Site/images/${this.value}.png)`;
+        icon.style.backgroundRepeat = "round";
         container.appendChild(icon);
 
         container.onclick = () => {

@@ -9,11 +9,12 @@ let SendTestRequests = async () => {
 function CreateSiteContainer() {
 	//  Create the base container that the program will exist in
 	container = document.createElement("div");
-    container.style.width = "640px";
-    container.style.height = "1136px";
-    container.style.minHeight = "400px";
+    container.style.width = "320px";
+    container.style.height = "560px";
+    container.style.minHeight = "560px";
     container.style.backgroundColor = "black";
     container.style.color = "white";
+    container.style.padding = "10px 0px 0px 0px";
     document.body.appendChild(container);
     return container;
 }
