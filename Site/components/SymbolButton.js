@@ -115,11 +115,7 @@ class SymbolButton {
         this.content.style.backgroundImage = `url(Site/images/${this.value}.png)`;
     }
 
-    highlight() {
-        this.content.style.border = "1px solid red";
-    }
-
-    dehighlight() {
-        this.content.style.border = "1px solid white";
+    highlight(color) {
+        this.content.style.border = `1px solid ${color}`;
     }
 }

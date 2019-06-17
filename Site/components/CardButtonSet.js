@@ -24,9 +24,8 @@ class CardButtonSet {
 
         this.getCardID = () => { return faceButton.GetValueCharacter() + suitButton.GetValueCharacter(); }
         this.reset = () => { faceButton.reset(); suitButton.reset(); }
-        this.highlight = () => { faceButton.highlight(); suitButton.highlight(); };
-        this.dehighlight = () => { faceButton.dehighlight(); suitButton.dehighlight(); };
-
+        this.highlight = (color) => { faceButton.highlight(color); suitButton.highlight(color); };
+    
         return container;
     }
 

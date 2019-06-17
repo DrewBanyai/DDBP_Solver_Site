@@ -1,11 +1,3 @@
-let SendTestRequests = async () => {
-    let responses = [];
-    console.log(await RequestBestMove([ "TS", "JS", "QS", "KS", "6S" ]));
-    console.log(await RequestBestMove([ "4S", "4H", "4C", "4D", "6S" ]));
-    console.log(await RequestBestMove([ "4S", "4H", "4C", "4D", "AS" ]));
-    console.log(await RequestBestMove([ "AC", "AS", "AD", "AH", "6S" ]));
-};
-
 function CreateSiteContainer() {
 	//  Create the base container that the program will exist in
 	container = document.createElement("div");
@@ -63,39 +55,34 @@ function Initialize() {
     if (cardButtonSet5) { container.appendChild(cardButtonSet5.content); }
 
     let cardButtonSetList = [ cardButtonSet1, cardButtonSet2, cardButtonSet3, cardButtonSet4, cardButtonSet5 ];
-    let dehighlightAll = () => { cardButtonSetList.forEach((set) => set.dehighlight()); }
-    cardButtonSetList.forEach((set) => set.setOnclick(dehighlightAll));
+    let highlightAll = (color) => { cardButtonSetList.forEach((set) => set.highlight(color)); }
+    cardButtonSetList.forEach((set) => set.setOnclick(() => highlightAll("white")));
 
     let basicButton1 = new BasicButton({
         image: "Submit",
         onclick: async () => {
             let cardList = [];
-            dehighlightAll();
+            highlightAll("white");
             cardList.push(cardButtonSet1.getCardID());
             cardList.push(cardButtonSet2.getCardID());
             cardList.push(cardButtonSet3.getCardID());
             cardList.push(cardButtonSet4.getCardID());
             cardList.push(cardButtonSet5.getCardID());
             let bestMove = await RequestBestMove(cardList);
-            console.log(bestMove);
+            
             if (bestMove.message === "Failure") { return; }
-            bestMove.hold.forEach((holder) => {
-            if (bestMove.message === "Failure") { return; }
-                cardButtonSetList.forEach((set) => { 
-                    if (set.getCardID() === holder) { 
-                        set.highlight();
-                    }
-                });
+            cardButtonSetList.forEach((set) => { 
+                let hold = bestMove.hold.includes(set.getCardID());
+                set.highlight(hold ? "red" : "blue"); 
             });
-        }
-        
+        },
     });
     container.appendChild(basicButton1.content);
 
     let basicButton2 = new BasicButton({
         image: "Reset",
         onclick: () => {
-            dehighlightAll();
+            highlightAll("white");
             cardButtonSet1.reset();
             cardButtonSet2.reset();
             cardButtonSet3.reset();
