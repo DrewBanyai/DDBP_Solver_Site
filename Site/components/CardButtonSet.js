@@ -22,8 +22,8 @@ class CardButtonSet {
         let suitButton = new SymbolButton({ buttonType: "Suit", value: "Club" });
         if (suitButton.content !== null) { container.appendChild(suitButton.content); }
 
-        this.getCardID = () => { return faceButton.GetValueCharacter() + suitButton.GetValueCharacter(); }
-        this.reset = () => { faceButton.reset(); suitButton.reset(); }
+        this.getCardID = () => { return faceButton.GetValueCharacter() + suitButton.GetValueCharacter(); };
+        this.reset = () => { faceButton.reset(); suitButton.reset(); };
         this.highlight = (color) => { faceButton.highlight(color); suitButton.highlight(color); };
     
         return container;

@@ -55,7 +55,7 @@ function Initialize() {
     if (cardButtonSet5) { container.appendChild(cardButtonSet5.content); }
 
     let cardButtonSetList = [ cardButtonSet1, cardButtonSet2, cardButtonSet3, cardButtonSet4, cardButtonSet5 ];
-    let highlightAll = (color) => { cardButtonSetList.forEach((set) => set.highlight(color)); }
+    let highlightAll = (color) => { cardButtonSetList.forEach((set) => set.highlight(color)); };
     cardButtonSetList.forEach((set) => set.setOnclick(() => highlightAll("white")));
 
     let basicButton1 = new BasicButton({
