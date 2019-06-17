@@ -14,7 +14,7 @@ class CardButtonSet {
         container.style.display = "flex";
         container.style.width = "140px";
         container.style.height = "70px";
-        container.style.margin = "20px auto 0px auto";
+        container.style.margin = "0px auto 10px auto";
 
         let faceButton = new SymbolButton({ buttonType: "Face", value: "Ace" });
         if (faceButton.content !== null) { container.appendChild(faceButton.content); }
@@ -22,6 +22,13 @@ class CardButtonSet {
         let suitButton = new SymbolButton({ buttonType: "Suit", value: "Club" });
         if (suitButton.content !== null) { container.appendChild(suitButton.content); }
 
+        this.getCardID = () => { return faceButton.GetValueCharacter() + suitButton.GetValueCharacter(); }
+        this.reset = () => { faceButton.reset(); suitButton.reset(); }
+        this.highlight = () => { faceButton.highlight(); suitButton.highlight(); };
+        this.dehighlight = () => { faceButton.dehighlight(); suitButton.dehighlight(); };
+
         return container;
     }
+
+    setOnclick(onclick) { this.content.onclick = onclick; }
 }

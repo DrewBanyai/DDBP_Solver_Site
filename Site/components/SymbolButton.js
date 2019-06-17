@@ -21,20 +21,13 @@ class SymbolButton {
         container.style.height = "70px";
         container.style.border = "1px solid white";
         container.style.borderRadius = "8px";
-
-        let icon = document.createElement("div");
-        icon.style.width = "70px";
-        icon.style.height = "70px";
-        icon.style.border = "1px solid white";
-        icon.style.borderRadius = "8px";
-        icon.style.margin = "auto";
-        icon.style.backgroundImage = `url(Site/images/${this.value}.png)`;
-        icon.style.backgroundRepeat = "round";
-        container.appendChild(icon);
+        container.style.margin = "auto";
+        container.style.backgroundImage = `url(Site/images/${this.value}.png)`;
+        container.style.backgroundRepeat = "round";
 
         container.onclick = () => {
             this.value = this.GetNextValue();
-            icon.style.backgroundImage = `url(Site/images/${this.value}.png)`;
+            container.style.backgroundImage = `url(Site/images/${this.value}.png)`;
         };
 
         return container;
@@ -81,5 +74,52 @@ class SymbolButton {
                 }
                 break;
         }
+    }
+
+    GetValueCharacter() {
+        switch (this.buttonType) {
+            case "Face":
+                switch (this.value) {
+                    case "Ace":         return "A";
+                    case "Two":         return "2";
+                    case "Three":       return "3";
+                    case "Four":        return "4";
+                    case "Five":        return "5";
+                    case "Six":         return "6";
+                    case "Seven":       return "7";
+                    case "Eight":       return "8";
+                    case "Nine":        return "9";
+                    case "Ten":         return "T";
+                    case "Jack":        return "J";
+                    case "Queen":       return "Q";
+                    case "King":        return "K";
+                }
+                break;
+
+            case "Suit":
+                switch (this.value) {
+                    case "Club":       return "C";
+                    case "Diamond":    return "D";
+                    case "Heart":      return "H";
+                    case "Spade":      return "S";
+                }
+                break;
+        }
+    }
+
+    reset() {
+        switch (this.buttonType) {
+            case "Face":    this.value = "Ace";     break;
+            case "Suit":    this.value = "Club";    break;
+        }
+        this.content.style.backgroundImage = `url(Site/images/${this.value}.png)`;
+    }
+
+    highlight() {
+        this.content.style.border = "1px solid red";
+    }
+
+    dehighlight() {
+        this.content.style.border = "1px solid white";
     }
 }
