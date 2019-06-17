@@ -14,10 +14,8 @@ let makeRequest = async (options) => {
     return response;
 };
 
-let testRequest = async () => {
-    let payload = {
-        cards: [ "TS", "JS", "QS", "KS", "6S" ],
-    };
+let RequestBestMove = async (cards) => {
+    let payload = { cards: cards, };
 
     let response = await makeRequest({
         method: "POST",
@@ -25,8 +23,5 @@ let testRequest = async () => {
         body: JSON.stringify(payload),
     });
     response = await response.json();
-    console.log(response);
     return response;
 };
-
-testRequest();
