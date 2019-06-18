@@ -58,37 +58,48 @@ function Initialize() {
     let highlightAll = (color) => { cardButtonSetList.forEach((set) => set.highlight(color)); };
     cardButtonSetList.forEach((set) => set.setOnclick(() => highlightAll("white")));
 
+    let submitHand = async () => {
+        let cardList = [];
+        highlightAll("white");
+        cardList.push(cardButtonSet1.getCardID());
+        cardList.push(cardButtonSet2.getCardID());
+        cardList.push(cardButtonSet3.getCardID());
+        cardList.push(cardButtonSet4.getCardID());
+        cardList.push(cardButtonSet5.getCardID());
+        console.log(cardList);
+        let bestMove = await RequestBestMove(cardList);
+        console.log(bestMove);
+        
+        if (bestMove.message === "Failure") { return; }
+        cardButtonSetList.forEach((set) => { 
+            let hold = bestMove.held.includes(set.getCardID());
+            set.highlight(hold ? "red" : "blue"); 
+        });
+    };
+
+    let submitRandomHands = async () => {
+        while (true) {
+            cardButtonSetList.forEach((set) => { set.randomize(); });
+            await submitHand();
+        }
+    }
+
     let basicButton1 = new BasicButton({
         image: "Submit",
-        onclick: async () => {
-            let cardList = [];
-            highlightAll("white");
-            cardList.push(cardButtonSet1.getCardID());
-            cardList.push(cardButtonSet2.getCardID());
-            cardList.push(cardButtonSet3.getCardID());
-            cardList.push(cardButtonSet4.getCardID());
-            cardList.push(cardButtonSet5.getCardID());
-            let bestMove = await RequestBestMove(cardList);
-            
-            if (bestMove.message === "Failure") { return; }
-            cardButtonSetList.forEach((set) => { 
-                let hold = bestMove.hold.includes(set.getCardID());
-                set.highlight(hold ? "red" : "blue"); 
-            });
-        },
+        onclick: submitHand,
     });
     container.appendChild(basicButton1.content);
 
     let basicButton2 = new BasicButton({
         image: "Reset",
-        onclick: () => {
+        onclick: submitRandomHands,/*() => {
             highlightAll("white");
             cardButtonSet1.reset();
             cardButtonSet2.reset();
             cardButtonSet3.reset();
             cardButtonSet4.reset();
             cardButtonSet5.reset();
-        },
+        },*/
     });
     basicButton2.content.style.margin = "10px auto 0px auto";
     container.appendChild(basicButton2.content);

@@ -118,4 +118,11 @@ class SymbolButton {
     highlight(color) {
         this.content.style.border = `1px solid ${color}`;
     }
+
+    randomize() {
+        let faces = [ "Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King" ];
+        let suits = [ "Club", "Diamond", "Heart", "Spade" ];
+        this.value = (this.buttonType === "Face") ? (faces[parseInt(faces.length * Math.random())]) : (suits[parseInt(suits.length * Math.random())]);
+        this.content.style.backgroundImage = `url(Site/images/${this.value}.png)`;
+    }
 }

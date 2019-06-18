@@ -25,7 +25,8 @@ class CardButtonSet {
         this.getCardID = () => { return faceButton.GetValueCharacter() + suitButton.GetValueCharacter(); };
         this.reset = () => { faceButton.reset(); suitButton.reset(); };
         this.highlight = (color) => { faceButton.highlight(color); suitButton.highlight(color); };
-    
+        this.randomize = () => { faceButton.randomize(); suitButton.randomize(); }
+
         return container;
     }
 
