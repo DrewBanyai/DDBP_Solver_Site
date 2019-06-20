@@ -92,14 +92,14 @@ function Initialize() {
 
     let basicButton2 = new BasicButton({
         image: "Reset",
-        onclick: submitRandomHands,/*() => {
+        onclick: () => {
             highlightAll("white");
             cardButtonSet1.reset();
             cardButtonSet2.reset();
             cardButtonSet3.reset();
             cardButtonSet4.reset();
             cardButtonSet5.reset();
-        },*/
+        },
     });
     basicButton2.content.style.margin = "10px auto 0px auto";
     container.appendChild(basicButton2.content);
